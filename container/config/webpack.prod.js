@@ -10,12 +10,13 @@ const prodConfig = {
     mode: 'production',
     output: {
         filename: '[name].[contenthash].js',
+        publicPath: '/container/latest/' // for aws s3 cloud front path: pre append path to filename
     },
     plugins: [
         new ModuleFederationPlugin({
             name: 'containerModule',
             remotes: {
-                marketing: `marketingModule@${domain}/marketing/remoteEntry.js`
+                marketing: `marketingModule@${domain}/marketing/latest/remoteEntry.js`
             },
             shared: packageJson.dependencies,
         })
