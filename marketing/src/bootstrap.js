@@ -1,11 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { createMemoryHistory } from 'history'
 
 import App from './App'
 
-const mount = (el) => {
+const mount = (el, { onNavigate }) => {
+    const history = createMemoryHistory()
+
+    onNavigate && history.listen(onNavigate)
+
     ReactDOM.render(
-        <App />,
+        <App memoryHistory={history} />,
         el
     )
 }
@@ -13,7 +18,7 @@ const mount = (el) => {
 if (process.env.NODE_ENV === 'development') {
     const devRoot = document.querySelector('#_marketing-dev-root')
     if (devRoot) {
-        mount(devRoot)
+        mount(devRoot, {})
     }
 }
 
