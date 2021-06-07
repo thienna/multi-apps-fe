@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createMemoryHistory, createBrowserHistory } from 'history'
+import { createMemoryHistory, createBrowserHistory, createHashHistory } from 'history'
 
 import App from './App'
 
@@ -19,7 +19,6 @@ const mount = (el, { onNavigate, defaultHistory }) => {
             if (nextPath !== history.location.pathname) {
                 history.push(nextPath)
             }
-            console.log('container just navigated')
         }
     }
 }
@@ -28,6 +27,9 @@ if (process.env.NODE_ENV === 'development') {
     const devRoot = document.querySelector('#_auth-dev-root')
     if (devRoot) {
         mount(devRoot, { defaultHistory: createBrowserHistory() })
+        // https://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writing-manually
+        // mount(devRoot, { defaultHistory: createHashHistory() }) // change to hashHistory to debug instead of browserHistory
+        // -> https://stackoverflow.com/questions/43209666/react-router-v4-cannot-get-url
     }
 }
 
