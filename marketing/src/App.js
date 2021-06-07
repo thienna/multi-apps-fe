@@ -13,7 +13,7 @@ export default (props) => {
     return (
         <div>
             <StylesProvider generateClassName={generateClassName}>
-                <Router history={props.memoryHistory}>
+                <Router history={props.history}>
                     <Switch>
                         <Route exact path="/pricing" component={Pricing} />
                         <Route exact path="/" component={Landing} />

@@ -7,7 +7,7 @@ export default () => {
     const history = useHistory()
 
     useEffect(() => { // make sure run code just one single time when this component is first displayed
-        mount(ref.current, {
+        const { onParentNavigate } = mount(ref.current, {
             onNavigate: ({ pathname: nextPath }) => {
                 const { pathname } = history.location
                 if (pathname !== nextPath) { //make sure not get into infinity loop
@@ -15,6 +15,8 @@ export default () => {
                 }
             }
         })
+
+        history.listen(onParentNavigate)
     })
 
     return <div ref={ref} />
