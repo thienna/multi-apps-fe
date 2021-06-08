@@ -21,7 +21,6 @@ const mount = (el, { onNavigate, defaultHistory }) => {
             if (nextPath !== history.location.pathname) {
                 history.push(nextPath)
             }
-            console.log('container just navigated')
         }
     }
 }
