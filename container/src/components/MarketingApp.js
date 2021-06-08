@@ -13,7 +13,8 @@ export default () => {
                 if (pathname !== nextPath) { //make sure not get into infinity loop
                     history.push(nextPath)
                 }
-            }
+            },
+            initialPath: history.location.pathname,
         })
 
         history.listen(onParentNavigate)
