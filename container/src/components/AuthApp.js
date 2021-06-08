@@ -19,7 +19,7 @@ export default ({ onSignIn }) => {
         })
 
         history.listen(onParentNavigate)
-    })
+    }, []) // fix: Warning: You cannot change <Router history> --- cause: Route in component is being rerender > make const
 
     return <div ref={ref} />
 }

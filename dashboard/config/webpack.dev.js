@@ -9,13 +9,13 @@ const devConfig = {
     mode: 'development',
     devServer: {
         port: 8083,
-        historyApiFallback: true
+        historyApiFallback: true,
+        headers: {
+            'Acess-Control-Allow-Origin': '*',
+        },
     },
     output: {
         publicPath: 'http://localhost:8083/'
-    },
-    headers: {
-        'Acess-Control-Allow-Origin': '*',
     },
     plugins: [
         new ModuleFederationPlugin({
