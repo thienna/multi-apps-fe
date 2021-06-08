@@ -2,12 +2,11 @@ import { mount } from 'auth/AuthApp'
 import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
-export default () => {
+export default ({ onSignIn }) => {
     const ref = useRef(null) // get references of the element that render on the screen
     const history = useHistory()
 
     useEffect(() => { // make sure run code just one single time when this component is first displayed
-        console.log('up auth')
         const { onParentNavigate } = mount(ref.current, {
             onNavigate: ({ pathname: nextPath }) => {
                 const { pathname } = history.location
@@ -16,6 +15,7 @@ export default () => {
                 }
             },
             initialPath: history.location.pathname,
+            onSignIn,
         })
 
         history.listen(onParentNavigate)
